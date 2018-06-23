@@ -1,0 +1,4 @@
+# ignore *.class
+/model/*.class
+/view/*.class
+*.class
