@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class FormLihatMerk extends JDialog {
   private final String judulKolomTabelMerk[] = {"ID Merk","Nama Merk"};
-  public static String kodeDipilih="";
 
   public FormLihatMerk(Frame parent, boolean modal) {
     super(parent, modal);
@@ -31,12 +30,11 @@ public class FormLihatMerk extends JDialog {
     merkTableModel = new DefaultTableModel(null,judulKolomTabelMerk);
     merkTable = new JTable() {
       public boolean isCellEditable(int rowIndex, int colIndex) {
-        return false; //Disable Editing
+        return false;
     }};
 
     merkScrollPane = new JScrollPane();
 
-    pilihButton = new JButton("Pilih");
     tutupButton = new JButton("Tutup");
 
     merkTable.setModel(merkTableModel);
@@ -46,26 +44,12 @@ public class FormLihatMerk extends JDialog {
 
     merkScrollPane.getViewport().add(merkTable);
     panel.add(merkScrollPane);
-    panel.add(pilihButton);
     panel.add(tutupButton);
 
     this.add(panel);
 
     merkScrollPane.setBounds(0,0,380,200);
-    pilihButton.setBounds(100,230,100,25);
-    tutupButton.setBounds(240,230,100,25);
-
-  	addWindowListener(new WindowAdapter() {
-      public void windowOpened(WindowEvent evt) {
-        formWindowOpened(evt);
-      }
-    });
-
-    pilihButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent evt) {
-        pilihButtonActionPerformed(evt);
-  	  }
-  	});
+    tutupButton.setBounds(10,230,360,25);
 
     tutupButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent evt) {
@@ -83,23 +67,6 @@ public class FormLihatMerk extends JDialog {
     }
   }
 
-  public String getKodeDipilih() {
-    return kodeDipilih;
-  }
-
-  private void formWindowOpened(WindowEvent evt) {
-    kodeDipilih = "";
-  }
-
-  private void pilihButtonActionPerformed(ActionEvent evt) {
-    if (merkTable.getSelectedRowCount() > 0) {
-	    kodeDipilih = merkTable.getValueAt(merkTable.getSelectedRow(), 0).toString();
-      dispose();
-  	} else {
-  	  JOptionPane.showMessageDialog(this, "Belum ada yang dipilih");
-  	}
-  }
-
   private void tutupButtonActionPerformed(ActionEvent evt){
     dispose();
   }
@@ -108,6 +75,6 @@ public class FormLihatMerk extends JDialog {
   private DefaultTableModel merkTableModel;
   private JTable merkTable;
   private JScrollPane merkScrollPane;
-  private JButton pilihButton;
   private JButton tutupButton;
+
 }

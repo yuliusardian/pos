@@ -70,10 +70,37 @@ public class Merk {
     return !adaKesalahan;
   }
 
-  public void hapus(String idMerk){
-    JOptionPane.showMessageDialog(null,"Hapus ini : \n"+idMerk,"Kesalahan",JOptionPane.ERROR_MESSAGE);
-  }
+  public String cari(String idMerk) {
+    boolean adaKesalahan = false;
+    String knx = "";
+    Connection connection;
+    if ((connection = koneksi.getConnection()) != null){
+      try {
+        String SQLStatemen = "SELECT * FROM merk WHERE merk_id='"+ idMerk + "'";
+        Statement sta = connection.createStatement();
+        ResultSet rset = sta.executeQuery(SQLStatemen);
 
+        rset.next();
+        if (rset.getRow()>0) {
+          knx = rset.getString("nama_merk");
+          sta.close();
+          rset.close();
+        } else {
+          sta.close();
+          rset.close();
+          adaKesalahan = true;
+          JOptionPane.showMessageDialog(null,"ID Merk \""+idMerk+"\" tidak ditemukan","Informasi",JOptionPane.INFORMATION_MESSAGE);
+        }
+      } catch (Exception ex){
+        adaKesalahan = true;
+        JOptionPane.showMessageDialog(null,"Tidak dapat membuka tabel merk\n"+ex,"Kesalahan",JOptionPane.ERROR_MESSAGE);
+      }
+    } else {
+      adaKesalahan = true;
+      JOptionPane.showMessageDialog(null,"Tidak dapat melakukan koneksi ke server\n"+koneksi.getPesanKesalahan(),"Kesalahan",JOptionPane.ERROR_MESSAGE);
+    }
+    return knx;
+  }
 
   public Object[][] bacaData() {
     boolean adaKesalahan = false;
