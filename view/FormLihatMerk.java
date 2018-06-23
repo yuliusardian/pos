@@ -8,98 +8,96 @@ import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 
 public class FormLihatMerk extends JDialog {
-  private final String judulKolomTabelAnggota[] = {"Kode","Nama Anggota"};
-
+  private final String judulKolomTabelMerk[] = {"ID Merk","Nama Merk"};
   public static String kodeDipilih="";
 
-  public FormLihatMerk(Frame parent, boolean modal){
+  public FormLihatMerk(Frame parent, boolean modal) {
     super(parent, modal);
     initComponents();
   }
 
-  private void initComponents(){
+  private void initComponents() {
     setTitle("Data Merk");
-	setSize(400,300);
-	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-	setAlwaysOnTop(true);
+    setSize(400,300);
+    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    setAlwaysOnTop(true);
 
-	Dimension dimensi = Toolkit.getDefaultToolkit().getScreenSize();
+    Dimension dimensi = Toolkit.getDefaultToolkit().getScreenSize();
     setLocation((dimensi.width-getWidth())/2,(dimensi.height-getHeight())/2);
 
-	panel = new JPanel();
-	panel.setLayout(null);
+    panel = new JPanel();
+    panel.setLayout(null);
 
-	anggotaTableModel = new DefaultTableModel(null,judulKolomTabelAnggota);
-	anggotaTable = new JTable(){
-	                public boolean isCellEditable(int rowIndex, int colIndex) {
-						return false; //Disable Editing
-					}
-	              };
-	anggotaScrollPane = new JScrollPane();
+    merkTableModel = new DefaultTableModel(null,judulKolomTabelMerk);
+    merkTable = new JTable() {
+      public boolean isCellEditable(int rowIndex, int colIndex) {
+        return false; //Disable Editing
+    }};
 
-	pilihButton = new JButton("Pilih");
-	tutupButton = new JButton("Tutup");
+    merkScrollPane = new JScrollPane();
 
-	anggotaTable.setModel(anggotaTableModel);
-	anggotaTable.getColumnModel().getColumn(0).setMinWidth(80);
-    anggotaTable.getColumnModel().getColumn(0).setPreferredWidth(80);
-    anggotaTable.getColumnModel().getColumn(0).setMaxWidth(80);
+    pilihButton = new JButton("Pilih");
+    tutupButton = new JButton("Tutup");
 
-	anggotaScrollPane.getViewport().add(anggotaTable);
-	panel.add(anggotaScrollPane);
-	panel.add(pilihButton);
-	panel.add(tutupButton);
+    merkTable.setModel(merkTableModel);
+    merkTable.getColumnModel().getColumn(0).setMinWidth(80);
+    merkTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+    merkTable.getColumnModel().getColumn(0).setMaxWidth(80);
 
-	this.add(panel);
+    merkScrollPane.getViewport().add(merkTable);
+    panel.add(merkScrollPane);
+    panel.add(pilihButton);
+    panel.add(tutupButton);
 
-	anggotaScrollPane.setBounds(0,0,380,200);
-	pilihButton.setBounds(100,230,100,25);
-	tutupButton.setBounds(240,230,100,25);
+    this.add(panel);
 
-	addWindowListener(new WindowAdapter() {
-            public void windowOpened(WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
+    merkScrollPane.setBounds(0,0,380,200);
+    pilihButton.setBounds(100,230,100,25);
+    tutupButton.setBounds(240,230,100,25);
 
-    pilihButton.addActionListener(new ActionListener(){
-	  public void actionPerformed(ActionEvent evt){
-	    pilihButtonActionPerformed(evt);
-	  }
-	});
+  	addWindowListener(new WindowAdapter() {
+      public void windowOpened(WindowEvent evt) {
+        formWindowOpened(evt);
+      }
+    });
 
-	tutupButton.addActionListener(new ActionListener(){
-	  public void actionPerformed(ActionEvent evt){
-	    tutupButtonActionPerformed(evt);
-	  }
-	});
+    pilihButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+        pilihButtonActionPerformed(evt);
+  	  }
+  	});
+
+    tutupButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent evt) {
+        tutupButtonActionPerformed(evt);
+  	  }
+  	});
   }
 
-  public void tampilkanData(Object[][] list){
-    anggotaTableModel.setRowCount(0);
-	if ((list != null) && (list.length > 0)){
-	  for (int i=0; i<list.length; i++){
-	    anggotaTableModel.addRow(list[i]);
-	  }
-	}
+  public void tampilkanData(Object[][] list) {
+    merkTableModel.setRowCount(0);
+    if ((list != null) && (list.length > 0)) {
+      for (int i=0; i<list.length; i++) {
+        merkTableModel.addRow(list[i]);
+      }
+    }
   }
 
-  public String getKodeDipilih(){
+  public String getKodeDipilih() {
     return kodeDipilih;
   }
 
-  private void formWindowOpened(WindowEvent evt){
+  private void formWindowOpened(WindowEvent evt) {
     kodeDipilih = "";
   }
 
-  private void pilihButtonActionPerformed(ActionEvent evt){
-    if (anggotaTable.getSelectedRowCount() > 0){
-	  kodeDipilih = anggotaTable.getValueAt(
-	                anggotaTable.getSelectedRow(), 0).toString();
-	  dispose();
-	} else {
-	  JOptionPane.showMessageDialog(this, "Belum ada yang dipilih");
-	}
+  private void pilihButtonActionPerformed(ActionEvent evt) {
+    if (merkTable.getSelectedRowCount() > 0) {
+	    kodeDipilih = merkTable.getValueAt(merkTable.getSelectedRow(), 0).toString();
+      dispose();
+  	} else {
+  	  JOptionPane.showMessageDialog(this, "Belum ada yang dipilih");
+  	}
   }
 
   private void tutupButtonActionPerformed(ActionEvent evt){
@@ -107,9 +105,9 @@ public class FormLihatMerk extends JDialog {
   }
 
   private JPanel panel;
-  private DefaultTableModel anggotaTableModel;
-  private JTable anggotaTable;
-  private JScrollPane anggotaScrollPane;
+  private DefaultTableModel merkTableModel;
+  private JTable merkTable;
+  private JScrollPane merkScrollPane;
   private JButton pilihButton;
   private JButton tutupButton;
 }
