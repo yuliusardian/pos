@@ -23,38 +23,23 @@ public class AplikasiPenjualan extends JFrame {
 	setSize((int)(skala * dimensi.getWidth()), (int)(skala * dimensi.getHeight()));
 	setLocation((int)((dimensi.getWidth()-getWidth())/2), (int)((dimensi.getHeight()-getHeight())/2));
 
-	mdiDesktopPane = new JDesktopPane();
-	menuBar = new JMenuBar();
+	mdiDesktopPane	= new JDesktopPane();
+	menuBar			= new JMenuBar();
 
-	aplikasiMenu = new JMenu("Aplikasi");
-	masterDataMenu = new JMenu("Master Data");
-	transaksiMenu = new JMenu("Transaksi");
-	//laporanMenu = new JMenu("Laporan");
+	aplikasiMenu	= new JMenu("Aplikasi");
+	masterDataMenu	= new JMenu("Master Data");
+	transaksiMenu	= new JMenu("Transaksi");
 
-  /*
-  	deskripsiMenuItem = new JMenuItem("Deskripsi");
-  	aksesMenuItem = new JMenuItem("Login");
-  */
 	keluarMenuItem                 = new JMenuItem("Keluar");
 
 	sepatuMenuItem                 = new JMenuItem("Sepatu");
-  jenisSepatuMenuItem            = new JMenuItem("Merk");
+	jenisSepatuMenuItem            = new JMenuItem("Merk");
 	ukuranSepatuMenuItem           = new JMenuItem("Ukuran");
 
-  //--------------------------------------------------------
-  /*
-  anggotaMenuItem                = new JMenuItem("Anggota");
-	petugasMenuItem                = new JMenuItem("Petugas");
-  */
 	peminjamanMenuItem             = new JMenuItem("Penjualan");
-  /*
-	pengembalianMenuItem           = new JMenuItem("Pengembalian");
-  */
 	peminjamanLaporanMenuItem      = new JMenuItem("Penjualan");
-  /*
-	pengembalianLaporanMenuItem    = new JMenuItem("Pengembalian");
-  */
-  bukuLaporanMenuItem            = new JMenuItem("Buku");
+	
+	bukuLaporanMenuItem            = new JMenuItem("Buku");
 	anggotaLaporanMenuItem         = new JMenuItem("Anggota");
 	petugasLaporanMenuItem         = new JMenuItem("Petugas");
 
@@ -68,33 +53,16 @@ public class AplikasiPenjualan extends JFrame {
 	menuBar.add(aplikasiMenu);
 	menuBar.add(masterDataMenu);
 	menuBar.add(transaksiMenu);
-	//menuBar.add(laporanMenu);
 
-	/*
-    aplikasiMenu.add(deskripsiMenuItem);
-    aplikasiMenu.add(aksesMenuItem);
-  */
 	aplikasiMenu.add(separator1);
 	aplikasiMenu.add(keluarMenuItem);
 
 	masterDataMenu.add(sepatuMenuItem);
-  masterDataMenu.add(jenisSepatuMenuItem);
+	masterDataMenu.add(jenisSepatuMenuItem);
 	masterDataMenu.add(ukuranSepatuMenuItem);
-  /*
-	masterDataMenu.add(separator2);
-  masterDataMenu.add(anggotaMenuItem);
-	masterDataMenu.add(petugasMenuItem);
-  */
+	
 	transaksiMenu.add(peminjamanMenuItem);
-	//transaksiMenu.add(pengembalianMenuItem);
-  /*
-	laporanMenu.add(peminjamanLaporanMenuItem);
-	laporanMenu.add(pengembalianLaporanMenuItem);
-	laporanMenu.add(separator3);
-	laporanMenu.add(bukuLaporanMenuItem);
-	laporanMenu.add(anggotaLaporanMenuItem);
-	laporanMenu.add(petugasLaporanMenuItem);
-  */
+
 	keluarMenuItem.addActionListener(new ActionListener(){
 	  public void actionPerformed(ActionEvent evt){
 	    keluarMenuItemActionPerformed(evt);
@@ -106,11 +74,11 @@ public class AplikasiPenjualan extends JFrame {
 	    jenisSepatuMenuItemActionPerformed(evt);
 	  }
 	});
-
-  ukuranSepatuMenuItem.addActionListener(new ActionListener(){
-	  public void actionPerformed(ActionEvent evt){
-	    ukuranSepatuMenuItemActionPerformed(evt);
-	  }
+	
+	ukuranSepatuMenuItem.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent evt){
+			ukuranSepatuMenuItemActionPerformed(evt);
+		}
 	});
 
 	sepatuMenuItem.addActionListener(new ActionListener(){
@@ -119,19 +87,7 @@ public class AplikasiPenjualan extends JFrame {
 	  }
 	});
 
-  /*
-  anggotaMenuItem.addActionListener(new ActionListener(){
-	  public void actionPerformed(ActionEvent evt){
-	    anggotaMenuItemActionPerformed(evt);
-	  }
-	});
 
-	petugasMenuItem.addActionListener(new ActionListener(){
-	  public void actionPerformed(ActionEvent evt){
-	    petugasMenuItemActionPerformed(evt);
-	  }
-	});
-  */
   }
 
   private void keluarMenuItemActionPerformed(ActionEvent evt){
@@ -183,12 +139,7 @@ public class AplikasiPenjualan extends JFrame {
   private JMenu aplikasiMenu;
   private JMenu masterDataMenu;
   private JMenu transaksiMenu;
-  //private JMenu laporanMenu;
 
-  /*
-    private JMenuItem deskripsiMenuItem;
-    private JMenuItem aksesMenuItem;
-  */
   private JMenuItem keluarMenuItem;
 
   private JMenuItem sepatuMenuItem;
@@ -198,10 +149,8 @@ public class AplikasiPenjualan extends JFrame {
   private JMenuItem petugasMenuItem;
 
   private JMenuItem peminjamanMenuItem;
-  //private JMenuItem pengembalianMenuItem;
 
   private JMenuItem peminjamanLaporanMenuItem;
-  //private JMenuItem pengembalianLaporanMenuItem;
   private JMenuItem bukuLaporanMenuItem;
   private JMenuItem anggotaLaporanMenuItem;
   private JMenuItem petugasLaporanMenuItem;
